@@ -6,7 +6,8 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
 import Home from './pages/Home';
-import InvoiceManagement from './components/InvoiceManagement'; // Add this import
+import InvoiceManagement from './components/InvoiceManagement';
+import ChatbotButton from './components/chatbot/ChatbotButton'; // Add this import
 
 // Private Route Component
 const PrivateRoute = ({ children }) => {
@@ -42,6 +43,9 @@ function App() {
   return (
     <Router>
       <AuthProvider>
+        {/* Chatbot Button - Available on ALL routes */}
+        <ChatbotButton />
+        
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
@@ -51,7 +55,7 @@ function App() {
               <Dashboard />
             </PrivateRoute>
           } />
-          {/* Add Invoice Management Route - Admin only */}
+          {/* Invoice Management Route - Admin only */}
           <Route path="/invoices" element={
             <AdminRoute>
               <InvoiceManagement />
